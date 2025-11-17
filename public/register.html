@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Sistema Web</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <h1>✨ Criar Conta</h1>
+            <p class="subtitle">Registre-se para começar</p>
+
+            <form id="registerForm">
+                <div class="profile-photo-upload">
+                    <div class="photo-preview" id="photoPreview">
+                        <div class="avatar-placeholder">📷</div>
+                        <img id="previewImage" style="display: none;">
+                    </div>
+                    <label for="profilePhoto" class="photo-label">Escolher foto de perfil</label>
+                    <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" style="display: none;">
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required placeholder="Seu nome completo">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required placeholder="Mínimo 6 caracteres">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar Senha</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Digite a senha novamente">
+                </div>
+
+                <div id="errorMessage" class="error-message"></div>
+
+                <button type="submit" class="btn-primary">Criar Conta</button>
+            </form>
+
+            <p class="auth-link">
+                Já tem uma conta? <a href="login.html">Faça login</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

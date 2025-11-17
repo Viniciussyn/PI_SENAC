@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visão Geral - OrganizeFinance</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="sidebar.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <main class="main-content">
+            <header class="page-header">
+                <h2>Visão Geral</h2>
+                <button class="settings-btn">⚙️</button>
+            </header>
+
+            <div class="content-grid">
+                <div class="profile-card">
+                    <div class="avatar" id="userAvatar">U</div>
+                    <div>
+                        <h3 id="userName">Carregando...</h3>
+                        <p class="welcome-text">Bem-vindo de volta</p>
+                    </div>
+                </div>
+
+                <div class="balance-card">
+                    <h4>Saldo</h4>
+                    <div class="balance-value">
+                        <span id="balanceAmount">R$ 0,00</span>
+                        <span class="balance-toggle" id="balanceToggle">👁️</span>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h4>Gráficos</h4>
+                    <div class="chart-content">
+                        <div class="chart-header">
+                            <span class="chart-title">Gastos e Receitas</span>
+                            <span class="chart-value" id="chartTotalValue">R$ 0,00</span>
+                        </div>
+                        <div class="chart-subtitle" id="chartSubtitle">Últimos 6 meses</div>
+                        <div class="chart-placeholder">
+                            <svg viewBox="0 0 200 80" class="line-chart" id="chartSvg">
+                                <!-- Gráfico será renderizado aqui -->
+                            </svg>
+                        </div>
+                        <div class="chart-months" id="chartMonths">
+                            <!-- Meses serão renderizados aqui -->
+                        </div>
+                        <div class="chart-legend" style="display: flex; justify-content: center; gap: 20px; margin-top: 10px; font-size: 12px;">
+                            <span style="color: #00D9FF;">● Receitas</span>
+                            <span style="color: #FF6B6B;">● Despesas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="goals-card">
+                    <div class="card-header">
+                        <h4>Metas</h4>
+                        <a href="/metas.html" class="view-all">Ver todas</a>
+                    </div>
+                    <div id="goalsContainer">
+                        <p style="text-align: center; color: #888; padding: 20px;">Carregando metas...</p>
+                    </div>
+                </div>
+
+
+                
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>loadSidebar('dashboard');</script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

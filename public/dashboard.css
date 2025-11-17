@@ -1,0 +1,1227 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #F7FAFC;
+    min-height: 100vh;
+}
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 260px;
+    background: white;
+    border-right: 1px solid #E2E8F0;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    padding: 25px 20px;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.sidebar-header h1 {
+    font-size: 1.3em;
+    color: #2D3748;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 20px 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: #718096;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background: #F7FAFC;
+    color: #00D9FF;
+}
+
+.nav-item.active {
+    background: #E6F7FF;
+    color: #00D9FF;
+    border-right: 3px solid #00D9FF;
+}
+
+.nav-icon {
+    font-size: 1.3em;
+}
+
+.nav-text {
+    font-size: 0.95em;
+    font-weight: 500;
+}
+
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid #E2E8F0;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-small {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.avatar-small img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info-small {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.user-info-small span {
+    font-size: 0.9em;
+    color: #2D3748;
+    font-weight: 500;
+}
+
+.logout-link {
+    background: none;
+    border: none;
+    color: #00D9FF;
+    font-size: 0.8em;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    margin-left: 260px;
+    flex: 1;
+    padding: 30px;
+    max-width: 1400px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.page-header h2 {
+    font-size: 2em;
+    color: #2D3748;
+}
+
+.settings-btn {
+    background: white;
+    border: 1px solid #E2E8F0;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.settings-btn:hover {
+    background: #F7FAFC;
+}
+
+.btn-add {
+    background: #00D9FF;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-add:hover {
+    background: #00C4E6;
+}
+
+/* DASHBOARD GRID */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.profile-card,
+.balance-card,
+.chart-card,
+.goals-card,
+.rewards-card,
+.education-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-card h3 {
+    color: #2D3748;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.welcome-text {
+    color: #00D9FF;
+    font-size: 0.9em;
+}
+
+.balance-card h4,
+.chart-card h4,
+.goals-card h4,
+.rewards-card h4,
+.education-card h4 {
+    color: #718096;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.balance-value {
+    background: linear-gradient(135deg, #E6F7FF 0%, #B3E5FC 100%);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #2D3748;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.balance-toggle {
+    cursor: pointer;
+    font-size: 0.6em;
+}
+
+.chart-content {
+    background: #F7FAFC;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.chart-title {
+    color: #4A5568;
+    font-size: 0.9em;
+}
+
+.chart-value {
+    color: #2D3748;
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.chart-subtitle {
+    color: #48BB78;
+    font-size: 0.85em;
+    margin-bottom: 15px;
+}
+
+.chart-placeholder {
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.line-chart {
+    width: 100%;
+    height: 100%;
+}
+
+.chart-months {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75em;
+    color: #A0AEC0;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.view-all {
+    color: #00D9FF;
+    font-size: 0.85em;
+    text-decoration: none;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+}
+
+.goal-item {
+    margin-bottom: 20px;
+}
+
+.goal-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.goal-name {
+    color: #2D3748;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.goal-amount {
+    color: #718096;
+    font-size: 0.85em;
+}
+
+.goal-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: #E2E8F0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #00D9FF;
+    border-radius: 10px;
+}
+
+.goal-percent {
+    color: #718096;
+    font-size: 0.85em;
+    min-width: 35px;
+    text-align: right;
+}
+
+.reward-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.reward-text {
+    color: #2D3748;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.reward-progress-text {
+    color: #00D9FF;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.reward-progress-bar {
+    height: 8px;
+    background: #E2E8F0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.reward-progress-fill {
+    height: 100%;
+    background: #00D9FF;
+    border-radius: 10px;
+}
+
+.education-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px;
+    background: #F7FAFC;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.education-icon {
+    font-size: 28px;
+}
+
+.education-item h5 {
+    color: #2D3748;
+    font-size: 0.9em;
+    margin-bottom: 4px;
+}
+
+.education-item p {
+    color: #718096;
+    font-size: 0.8em;
+    line-height: 1.4;
+}
+
+/* METAS PAGE */
+.goals-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.goal-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.goal-card h3 {
+    color: #2D3748;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.goal-description {
+    color: #718096;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+/* TRANSAÇÕES PAGE */
+.tabs-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.tab-btn {
+    background: white;
+    border: 1px solid #E2E8F0;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #718096;
+}
+
+.tab-btn.active {
+    background: #00D9FF;
+    color: white;
+    border-color: #00D9FF;
+}
+
+.transactions-list {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #F7FAFC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+}
+
+.transaction-details {
+    flex: 1;
+}
+
+.transaction-details h4 {
+    color: #2D3748;
+    font-size: 0.95em;
+    margin-bottom: 4px;
+}
+
+.transaction-details p {
+    color: #A0AEC0;
+    font-size: 0.85em;
+}
+
+.transaction-amount {
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.expense .transaction-amount {
+    color: #F56565;
+}
+
+.income .transaction-amount {
+    color: #48BB78;
+}
+
+/* EDUCAÇÃO PAGE */
+.education-grid-page {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.education-card-large {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.education-icon-large {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.education-card-large h3 {
+    color: #2D3748;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.education-card-large p {
+    color: #718096;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.btn-learn {
+    background: #00D9FF;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-learn:hover {
+    background: #00C4E6;
+}
+
+/* RELATÓRIOS PAGE */
+.period-select {
+    padding: 10px 15px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+}
+
+.reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.report-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.report-card h3 {
+    color: #2D3748;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.bar-chart {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.bar {
+    width: 60px;
+    border-radius: 8px 8px 0 0;
+}
+
+.income-bar {
+    background: #48BB78;
+}
+
+.expense-bar {
+    background: #F56565;
+}
+
+.chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    color: #4A5568;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+}
+
+.legend-color.income {
+    background: #48BB78;
+}
+
+.legend-color.expense {
+    background: #F56565;
+}
+
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    background: #F7FAFC;
+    border-radius: 8px;
+}
+
+.savings-info {
+    text-align: center;
+}
+
+.savings-amount {
+    font-size: 2.5em;
+    color: #48BB78;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.savings-percentage {
+    font-size: 1.2em;
+    color: #718096;
+    margin-bottom: 15px;
+}
+
+/* RECOMPENSAS PAGE */
+.rewards-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.rewards-hero h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.reward-amount-big {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.reward-progress-big {
+    max-width: 400px;
+    margin: 0 auto 20px;
+}
+
+.reward-progress-bar-big {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.reward-progress-fill-big {
+    height: 100%;
+    background: white;
+    border-radius: 10px;
+}
+
+.rewards-history {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.rewards-history h3 {
+    color: #2D3748;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+}
+
+.reward-history-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.reward-history-item.earned {
+    background: #E6FFFA;
+}
+
+.reward-history-item.pending {
+    background: #FFF5F5;
+}
+
+.reward-icon {
+    font-size: 2em;
+}
+
+.reward-history-item h4 {
+    color: #2D3748;
+    font-size: 1em;
+    margin-bottom: 4px;
+}
+
+.reward-history-item p {
+    color: #718096;
+    font-size: 0.9em;
+}
+
+.reward-status {
+    margin-left: auto;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+/* ESTILOS DO MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.modal-header h3 {
+    font-size: 1.3em;
+    color: #2D3748;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #718096;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.modal-close:hover {
+    background: #F7FAFC;
+    color: #2D3748;
+}
+
+.modal form {
+    padding: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2D3748;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #00D9FF;
+    box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 25px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: #00D9FF;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #00C4E6;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #F7FAFC;
+    color: #718096;
+}
+
+.btn-secondary:hover {
+    background: #E2E8F0;
+}
+
+/* AÇÕES DAS TRANSAÇÕES */
+.transaction-item {
+    position: relative;
+}
+
+.transaction-actions {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    gap: 8px;
+}
+
+.transaction-item:hover .transaction-actions {
+    display: flex;
+}
+
+.transaction-item:hover .transaction-amount {
+    opacity: 0;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.btn-icon:hover {
+    background: #F7FAFC;
+    transform: scale(1.1);
+}
+
+/* ESTADO VAZIO */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #718096;
+}
+
+.empty-state p:first-child {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+}
+
+.empty-state p:last-child {
+    font-size: 0.9em;
+}
+
+/* MENSAGENS DE TOAST */
+.message-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 2000;
+    animation: slideIn 0.3s ease;
+    font-weight: 500;
+}
+
+.message-toast.success {
+    border-left: 4px solid #48BB78;
+    color: #2F855A;
+}
+
+.message-toast.error {
+    border-left: 4px solid #F56565;
+    color: #C53030;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   ESTILOS DE METAS
+   ======================================== */
+
+/* Lista de metas */
+.goals-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+}
+
+/* Card de meta */
+.goal-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s;
+    position: relative;
+}
+
+.goal-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+/* Header da meta */
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    gap: 12px;
+}
+
+.goal-header h3 {
+    font-size: 1.2em;
+    color: #2D3748;
+    margin: 0 0 4px 0;
+    font-weight: 600;
+}
+
+.goal-category {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #F7FAFC;
+    border-radius: 12px;
+    font-size: 0.85em;
+    color: #4A5568;
+    font-weight: 500;
+}
+
+/* Badges de status */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-badge.completed {
+    background: #E6FFFA;
+    color: #2C7A7B;
+    border: 1px solid #81E6D9;
+}
+
+.status-badge.cancelled {
+    background: #F7FAFC;
+    color: #718096;
+    border: 1px solid #CBD5E0;
+}
+
+.status-badge.expired {
+    background: #FFF5F5;
+    color: #C53030;
+    border: 1px solid #FEB2B2;
+}
+
+.status-badge.warning {
+    background: #FFFAF0;
+    color: #C05621;
+    border: 1px solid #FBD38D;
+}
+
+/* Descrição da meta */
+.goal-description {
+    color: #718096;
+    font-size: 0.9em;
+    margin: 8px 0 12px 0;
+    line-height: 1.5;
+}
+
+/* Valores da meta */
+.goal-amounts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+    padding: 12px;
+    background: #F7FAFC;
+    border-radius: 8px;
+}
+
+.amount-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.amount-label {
+    font-size: 0.75em;
+    color: #718096;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.amount-value {
+    font-size: 1em;
+    font-weight: 600;
+    color: #2D3748;
+}
+
+/* Progresso da meta */
+.goal-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 12px;
+    background: #E2E8F0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #4CAF50;
+    border-radius: 6px;
+    transition: width 0.5s ease;
+}
+
+.goal-percent {
+    font-weight: 600;
+    color: #2D3748;
+    min-width: 45px;
+    text-align: right;
+}
+
+/* Footer da meta */
+.goal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #E2E8F0;
+}
+
+.goal-deadline {
+    font-size: 0.9em;
+    color: #718096;
+}
+
+.goal-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.goal-actions .btn-icon.delete:hover {
+    background: #FFF5F5;
+    color: #E53E3E;
+}
+
+/* Estado vazio de metas */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+    color: #718096;
+}
+
+.empty-state p {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+}
+
+.empty-state .btn-primary {
+    margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+    }
+    
+    .sidebar-header h1 {
+        font-size: 1.5em;
+    }
+    
+    .nav-text,
+    .user-info-small {
+        display: none;
+    }
+    
+    .main-content {
+        margin-left: 70px;
+        padding: 20px;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        width: 95%;
+    }
+    
+    .message-toast {
+        right: 10px;
+        left: 10px;
+    }
+}

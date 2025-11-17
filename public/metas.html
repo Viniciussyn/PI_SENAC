@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metas - OrganizeFinance</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="sidebar.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <main class="main-content">
+            <header class="page-header">
+                <h2>Minhas Metas</h2>
+                <button class="btn-add" onclick="openGoalModal()">+ Nova Meta</button>
+            </header>
+
+            <!-- Filtros de status -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-status="all" onclick="filterGoals('all')">Todas</button>
+                <button class="filter-tab" data-status="active" onclick="filterGoals('active')">Ativas</button>
+                <button class="filter-tab" data-status="completed" onclick="filterGoals('completed')">Concluídas</button>
+                <button class="filter-tab" data-status="cancelled" onclick="filterGoals('cancelled')">Canceladas</button>
+            </div>
+
+            <!-- Lista de metas (será preenchida dinamicamente) -->
+            <div class="goals-list" id="goalsList">
+                <!-- Metas serão carregadas aqui via JavaScript -->
+            </div>
+
+            <!-- Estado vazio -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <p>📊 Nenhuma meta encontrada</p>
+                <button class="btn-primary" onclick="openGoalModal()">Criar minha primeira meta</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de adicionar/editar meta -->
+    <div class="modal" id="goalModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Nova Meta</h3>
+                <button class="modal-close" onclick="closeGoalModal()">&times;</button>
+            </div>
+            <form id="goalForm" onsubmit="saveGoal(event)">
+                <input type="hidden" id="goalId">
+                
+                <div class="form-group">
+                    <label for="goalName">Nome da Meta *</label>
+                    <input type="text" id="goalName" placeholder="Ex: Viagem para a praia" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="goalTargetAmount">Valor Alvo *</label>
+                        <input type="number" id="goalTargetAmount" placeholder="0.00" step="0.01" min="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goalCurrentAmount">Valor Atual</label>
+                        <input type="number" id="goalCurrentAmount" placeholder="0.00" step="0.01" min="0" value="0">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="goalDeadline">Prazo *</label>
+                        <input type="date" id="goalDeadline" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goalCategory">Categoria</label>
+                        <select id="goalCategory">
+                            <option value="">Selecione uma categoria</option>
+                            <option value="Viagem">🏖️ Viagem</option>
+                            <option value="Emergência">🚨 Emergência</option>
+                            <option value="Compra">🛒 Compra</option>
+                            <option value="Educação">📚 Educação</option>
+                            <option value="Investimento">💰 Investimento</option>
+                            <option value="Casa">🏠 Casa</option>
+                            <option value="Carro">🚗 Carro</option>
+                            <option value="Saúde">❤️ Saúde</option>
+                            <option value="Outro">📌 Outro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="goalDescription">Descrição</label>
+                    <textarea id="goalDescription" rows="3" placeholder="Descreva sua meta (opcional)"></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeGoalModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de atualizar progresso -->
+    <div class="modal" id="progressModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Atualizar Progresso</h3>
+                <button class="modal-close" onclick="closeProgressModal()">&times;</button>
+            </div>
+            <form id="progressForm" onsubmit="updateProgress(event)">
+                <input type="hidden" id="progressGoalId">
+                
+                <div class="form-group">
+                    <label for="progressAmount">Valor Atual Economizado *</label>
+                    <input type="number" id="progressAmount" placeholder="0.00" step="0.01" min="0" required>
+                    <small id="progressInfo"></small>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeProgressModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Atualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast de notificação -->
+    <div class="toast" id="toast"></div>
+
+    <script>loadSidebar('metas');</script>
+    <script src="dashboard.js"></script>
+    <script src="metas.js"></script>
+</body>
+</html>

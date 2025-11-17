@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transações - OrganizeFinance</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="sidebar.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <main class="main-content">
+            <header class="page-header">
+                <h2>Transações</h2>
+                <button class="btn-add" onclick="openNewTransactionModal()">+ Nova Transação</button>
+            </header>
+
+            <!-- Abas de filtro -->
+            <div class="tabs-container">
+                <button class="tab-btn active">Todas</button>
+                <button class="tab-btn">Despesas</button>
+                <button class="tab-btn">Receitas</button>
+            </div>
+
+            <!-- Lista de transações (preenchida dinamicamente) -->
+            <div class="transactions-list">
+                <div class="empty-state">
+                    <p>Carregando transações...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de Nova/Editar Transação -->
+    <div id="transactionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Nova Transação</h3>
+                <button class="modal-close" onclick="closeTransactionModal()">&times;</button>
+            </div>
+            
+            <form id="transactionForm" onsubmit="saveTransaction(event)">
+                <div class="form-group">
+                    <label for="transactionType">Tipo *</label>
+                    <select id="transactionType" required>
+                        <option value="">Selecione</option>
+                        <option value="expense">Despesa</option>
+                        <option value="income">Receita</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="transactionCategory">Categoria *</label>
+                    <select id="transactionCategory" required>
+                        <option value="">Selecione</option>
+                        <option value="Alimentação">🍔 Alimentação</option>
+                        <option value="Transporte">🚗 Transporte</option>
+                        <option value="Moradia">🏠 Moradia</option>
+                        <option value="Saúde">🏥 Saúde</option>
+                        <option value="Educação">📚 Educação</option>
+                        <option value="Lazer">🎬 Lazer</option>
+                        <option value="Compras">🛍️ Compras</option>
+                        <option value="Salário">💰 Salário</option>
+                        <option value="Freelance">💻 Freelance</option>
+                        <option value="Investimentos">📈 Investimentos</option>
+                        <option value="Outros">📌 Outros</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="transactionDescription">Descrição *</label>
+                    <input type="text" id="transactionDescription" placeholder="Ex: Almoço no restaurante" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="transactionAmount">Valor (R$) *</label>
+                    <input type="number" id="transactionAmount" placeholder="0.00" step="0.01" min="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="transactionDate">Data *</label>
+                    <input type="date" id="transactionDate" required>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeTransactionModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>loadSidebar('transacoes');</script>
+    <script src="dashboard.js"></script>
+    <script src="transacoes.js"></script>
+</body>
+</html>

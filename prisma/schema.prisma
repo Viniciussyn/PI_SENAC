@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int           @id @default(autoincrement())
+  email        String        @unique
+  name         String
+  password     String
+  profilePhoto String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  transactions Transaction[] // Relacionamento: um usuário tem várias transações
+  goals        Goal[]        // Relacionamento: um usuário tem várias metas
+}
+
+model Transaction {
+  id          Int      @id @default(autoincrement())
+  userId      Int      // ID do usuário dono da transação
+  type        String   // "expense" (despesa) ou "income" (receita)
+  category    String   // Categoria (Alimentação, Transporte, Salário, etc)
+  description String   // Descrição da transação
+  amount      Float    // Valor da transação
+  date        DateTime // Data da transação
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId]) // Índice para buscar transações por usuário rapidamente
+}
+
+model Goal {
+  id            Int      @id @default(autoincrement())
+  userId        Int      // ID do usuário dono da meta
+  name          String   // Nome/título da meta
+  targetAmount  Float    // Valor alvo da meta
+  currentAmount Float    @default(0) // Valor atual economizado
+  deadline      DateTime // Prazo para atingir a meta
+  category      String?  // Categoria da meta (Viagem, Emergência, Compra, etc)
+  description   String?  // Descrição opcional da meta
+  status        String   @default("active") // "active", "completed", "cancelled"
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId]) // Índice para buscar metas por usuário rapidamente
+}
